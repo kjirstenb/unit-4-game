@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Crystal Collector</title>
+
+    <link rel="stylesheet" type="text/css" href="/Users/kjirstenberglund/Desktop/Assets/CSS/Crystal-Collector-Game.css">
+
+</head>
+
+<body>
+    <div class="header">
+        <h1>The Crystal Collector Game!</h1>
+    </div>
+
+    <h2>How To Play:</h2>
+
+    <div class="Instructions">
+
+        <p>You will be given a <strong> random number </strong> at the start of the game.
+
+            There are four crystals below. <br> By clicking on the crystal you will add a specific amount of points to
+            your total score. <br> You win the game by matching your total score to <strong>random number</strong> <br>
+            You
+            lose the game if you total score goes above the <strong>random number</strong>
+            <br> The value of each crystal is hidden from you until you click on it.
+            <br> Each time when the game starts, the game will change the values of each crystal. </p>
+
+    </div>
+
+    <div class="crystals">
+
+        <img src="https://images-na.ssl-images-amazon.com/images/I/71Pam5BewEL._SX425_.jpg" class=crystals id="crystal1"
+            alt="blue crystal" width="100" height="100">
+
+        <img src="https://www.mymothersattic.ca/wp-content/uploads/2015/06/Swarovski-Red-Heart.jpg" class=crystals id="crystal2"
+            alt="red crystal" width="100" height="100">
+
+        <img src="https://www.pricescope.com/files/blog/Orange-Yellow-diamond-pendant-gregchang35-3.jpg" class=crystals
+            id="crystal3" alt="yellow crystal" width="120" height="100">
+
+        <img src="https://images-na.ssl-images-amazon.com/images/I/6108elU0jxL._AC_UL160_SR160,160_.jpg" class=crystals
+            id="crystal4" alt="green crystal" width="80" height="100">
+
+    </div>
+
+    <div class="Number to Match">
+
+        <div id="wins">
+            <p>Wins: 0</p>
+        </div>
+        <div id="losses">
+            <p>Losses: 0</p>
+        </div>
+        <div id="total">
+            <p> Your Total Score: 0</p>
+        </div>
+        <div id="random">
+            <p>Number to Match: </p>
+        </div>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.js"></script>
+        <script type="text/javascript">
+            var win = 0;
+            var losses = 0;
+            var total = 0;
+            var Random = 0;
+            var crystal1 = 0;
+            var crystal2 = 0;
+            var crystal3 = 0;
+            var crystal4 = 0;
+            $(document).ready(function () {
+                init();
+                $('#crystal1').on('click', function () {
+                    total = total + crystal1;
+                    $("#total").html("<p>Your Total Score: " + total + "</p>");
+                    checkTotal();
+
+                });
+                $('#crystal2').on('click', function () {
+                    total = total + crystal2;
+                    $("#total").html("<p>Your Total Score: " + total + "</p>");
+                    checkTotal();
+
+
+                });
+                $('#crystal3').on('click', function () {
+                    total = total + crystal3;
+                    $("#total").html("<p>Your Total Score: " + total + "</p>");
+                    checkTotal();
+
+                });
+                $('#crystal4').on('click', function () {
+                    total = total + crystal4;
+                    $("#total").html("<p>Your Total Score: " + total + "</p>");
+                    checkTotal();
+
+                });
+                function init() {
+                    Random = Math.floor(Math.random() * (101) + 19);
+                    $("#random").html("<p>Number to Match: " + Random + "</p>");
+                    total = 0;
+                    $("#total").html("<p>Your Total Score: " + total + "</p>");
+
+                    crystal1 = Math.floor(Math.random() * (11) + 1);
+                    crystal2 = Math.floor(Math.random() * (11) + 1);
+                    crystal3 = Math.floor(Math.random() * (11) + 1);
+                    crystal4 = Math.floor(Math.random() * (11) + 1);
+                }
+
+                function checkTotal() {
+
+                    if (total > Random) {
+                        losses++
+                        $("#losses").html("<p>Losses: " + losses + "</p>");
+                        alert("You Lose");
+                        init();
+
+                    }
+                    if (total === Random) {
+                        win++
+                        $("#wins").html("<p>Wins: " + win + "</p>");
+                        alert("You win");
+                        init();
+
+                    }
+                }
+            });
+        </script>
+
+</body>
+
+</html>
